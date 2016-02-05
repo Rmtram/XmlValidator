@@ -1,0 +1,44 @@
+{
+  "name": "rmtram/xml-validator",
+  "type": "library",
+  "description": "XmlValidator",
+  "keywords": [
+    "xml",
+    "XML",
+    "Validate",
+    "Validator",
+    "XmlValidator",
+    "XmlValidate"
+  ],
+  "homepage": "https://github.com/Rmtram/XmlValidator",
+  "support": {
+    "issues": "https://github.com/Rmtram/XmlValidator/issues",
+    "source": "https://github.com/Rmtram/XmlValidator"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Rmtram",
+      "email": "rmtram95@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">= 5.4.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~4.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Rmtram\\XmlValidator\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Rmtram\\XmlValidatorTestCase\\": "tests/"
+    },
+    "classmap": [
+      "tests/"
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" >
+    <required>ok</required>
+    <required1></required1>
+    <required2></required2>
+    <required3></required3>
+    <required4></required4>
+    <required5></required5>
+    <required-attr empty="empty"></required-attr>
+    <nest>
+        <required>ok</required>
+        <required1></required1>
+        <required2></required2>
+        <required3></required3>
+        <required4></required4>
+        <required5></required5>
+        <required-attr empty="empty"></required-attr>
+    </nest>
+</rss>
