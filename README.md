@@ -62,7 +62,47 @@ $validator->validate($xml)
 
 ```
 
+`required(nest data) succeed`
+
+```php
+
+$validator = new Validator();
+
+// xml data
+$xml = '...'; 
+
+// required columns.
+$columns = ['nest.ok'];
+
+// add required evaluation.
+$validator->addEvaluation(new RequiredEvaluation($columns));
+
+// true
+$validator->validate($xml)
+
+```
+
 `required fail`
+
+```php
+
+$validator = new Validator();
+
+// xml data
+$xml = '...'; 
+
+// required columns.
+$columns = ['ng'];
+
+// add required evaluation.
+$validator->addEvaluation(new RequiredEvaluation($columns));
+
+// false
+$validator->validate($xml)
+
+```
+
+`required(nest data) fail`
 
 ```php
 
