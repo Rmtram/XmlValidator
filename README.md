@@ -7,6 +7,8 @@ Simple Xml Validator.
 
 ## Example
 
+use basic.
+
 ```php
 
 $validator = new Validator();
