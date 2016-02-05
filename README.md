@@ -15,7 +15,7 @@ $validator = new Validator();
 
 // Syntax to evaluate whether correct.
 $validator->addEvaluation(new BasicEvaluation());
-
+$validator->addEvaluation(new RequiredEvaluation(['test']));
 $xml = '<?xml version="1.0" encoding="UTF-8"?><test></test>';
 
 if ($validator->validate($xml)) {
