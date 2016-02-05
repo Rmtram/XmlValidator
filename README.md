@@ -27,7 +27,7 @@ if ($validator->validate($xml)) {
 
 ```
 
-**Evaluation list.**
+### Evaluation list
 
 `xml data`
 
@@ -42,9 +42,11 @@ if ($validator->validate($xml)) {
 
 ```
 
-`required succeed`
+#### RequiredEvaluation
 
 ```php
+
+// success required
 
 $validator = new Validator();
 
@@ -60,11 +62,9 @@ $validator->addEvaluation(new RequiredEvaluation($columns));
 // true
 $validator->validate($xml)
 
-```
 
-`required(nest data) succeed`
 
-```php
+// success required(nest data)
 
 $validator = new Validator();
 
@@ -80,12 +80,8 @@ $validator->addEvaluation(new RequiredEvaluation($columns));
 // true
 $validator->validate($xml)
 
-```
 
-`required fail`
-
-```php
-
+//fail required
 $validator = new Validator();
 
 // xml data
@@ -100,12 +96,8 @@ $validator->addEvaluation(new RequiredEvaluation($columns));
 // false
 $validator->validate($xml)
 
-```
 
-`required(nest data) fail`
-
-```php
-
+//fail required(nest data)
 $validator = new Validator();
 
 // xml data
