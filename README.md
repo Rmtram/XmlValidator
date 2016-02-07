@@ -1,10 +1,8 @@
 # XmlValidator
 
 [![Build Status](https://travis-ci.org/Rmtram/XmlValidator.svg)](https://travis-ci.org/Rmtram/XmlValidator)
-
 [![Total
 Downloads](https://poser.pugx.org/rmtram/xml-validator/downloads)](https://packagist.org/packages/rmtram/xml-validator)
-
 [![Latest Stable
 Version](https://poser.pugx.org/rmtram/xml-validator/v/stable.png)](https://packagist.org/packages/rmtram/xml-validator)
 
