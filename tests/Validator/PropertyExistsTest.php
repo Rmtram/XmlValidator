@@ -4,7 +4,6 @@ namespace Rmtram\XmlValidatorTestCase\Validator;
 
 use Rmtram\XmlValidator\Evaluations\PropertyExistsEvaluation;
 use Rmtram\XmlValidatorTestCase\ValidatorTestCase;
-use Rmtram\XmlValidator\Evaluations\RequiredEvaluation;
 use Rmtram\XmlValidator\Validator;
 
 /**

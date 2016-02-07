@@ -1,6 +1,8 @@
 <?php
 
 namespace Rmtram\XmlValidator\Evaluations;
+use Rmtram\XmlValidator\Evaluations\Mixin\Messenger;
+use Rmtram\XmlValidator\Evaluations\Mixin\Trimmer;
 
 /**
  * Class RequiredEvaluation
@@ -8,6 +10,9 @@ namespace Rmtram\XmlValidator\Evaluations;
  */
 class RequiredEvaluation extends AbstractEvaluation
 {
+
+    use Trimmer;
+    use Messenger;
 
     /**
      * @var array
@@ -46,20 +51,17 @@ class RequiredEvaluation extends AbstractEvaluation
         $array = json_decode(json_encode($xml), true);
 
         foreach ($this->columns as $column) {
-            $ex = explode($this->delimiter, $column);
+            $keys = explode($this->delimiter, $column);
             $tmp = $array;
-            $cache = null;
-            foreach ($ex as $v) {
-                $cache = !$cache ? $v : $cache . '.' . $v;
-                if (isset($tmp[$v]['@attributes'])) {
-                    unset($tmp[$v]['@attributes']);
-                }
-                if (empty($tmp[$v])) {
-                    $this->errorManager->add(
-                        $this->message->get('required', $cache));
+            $message = null;
+            foreach ($keys as $k) {
+                $message = !$message ? $k : $message . '.' . $k;
+                $tmp = $this->trimAttributes($tmp, $k);
+                if (empty($tmp[$k])) {
+                    $this->addErrorWithTranslateMessage('required', $message);
                     continue;
                 }
-                $tmp = $tmp[$v];
+                $tmp = $tmp[$k];
             }
         }
 

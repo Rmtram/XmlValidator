@@ -2,13 +2,16 @@
 
 namespace Rmtram\XmlValidator\Evaluations;
 use Rmtram\XmlValidator\Evaluations\Mixin\Messenger;
+use Rmtram\XmlValidator\Evaluations\Mixin\Trimmer;
 
 /**
- * Class PropertyExistsEvaluation
+ * Class RequiredEvaluation
  * @package Rmtram\XmlValidator\Evaluations
  */
-class PropertyExistsEvaluation extends AbstractEvaluation
+class MatchValueEvaluation extends AbstractEvaluation
 {
+
+    use Trimmer;
 
     use Messenger;
 
@@ -45,21 +48,44 @@ class PropertyExistsEvaluation extends AbstractEvaluation
         if (empty($this->columns)) {
             return true;
         }
-        foreach ($this->columns as $column) {
+        $array = json_decode(json_encode($xml), true);
+        foreach ($this->columns as $column => $val) {
             $keys = explode($this->delimiter, $column);
-            $tmp = $xml;
+            $tmp = $array;
+            $errorFlag = false;
             $message = null;
             foreach ($keys as $k) {
                 $message = !$message ? $k : $message . '.' . $k;
-                if (!property_exists($tmp, $k)) {
+                $tmp = $this->trimAttributes($tmp, $k);
+                if (empty($tmp[$k])) {
+                    $errorFlag = true;
                     $this->addErrorWithTranslateMessage(
-                        'property_exists', $message);
+                        'match-value', $message);
                     continue;
                 }
-                $tmp = $tmp->$k;
+                $tmp = $tmp[$k];
+            }
+            if (false === $errorFlag) {
+                if (!$this->isMatch($tmp, $val)) {
+                    $this->addErrorWithTranslateMessage(
+                        'match-value', $message);
+                }
             }
         }
         return $this->errorManager->succeed();
+    }
+
+    /**
+     * @param string $expand
+     * @param string|array $actual
+     * @return bool
+     */
+    private function isMatch($expand, $actual)
+    {
+        if (is_array($actual)) {
+            return in_array($expand, $actual);
+        }
+        return $expand === $actual;
     }
 
 }

@@ -27,7 +27,8 @@ class Translator
     public function __construct($extension = 'yml')
     {
         $config = new Config();
-        $config->setCache(new Cache())->setExtension($extension);
+        $config->setCache(new Cache())
+            ->setExtension($extension);
         $this->config = $config;
     }
 

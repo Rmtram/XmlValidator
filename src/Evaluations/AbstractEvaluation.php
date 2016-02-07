@@ -8,7 +8,7 @@ use Rmtram\XmlValidator\Message\Getter;
  * Class AbstractEvaluation
  * @package Rmtram\XmlValidator\Evaluations
  */
-abstract class AbstractEvaluation implements InterfaceEvaluation, InterfaceMessageEvaluation
+abstract class AbstractEvaluation implements InterfaceEvaluation, InterfaceMessage
 {
 
     /**

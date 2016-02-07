@@ -3,10 +3,10 @@
 namespace Rmtram\XmlValidator\Evaluations;
 
 /**
- * Class BasicEvaluation
+ * Class SyntaxEvaluation
  * @package Rmtram\XmlValidator\Evaluations
  */
-class BasicEvaluation extends AbstractEvaluation
+class SyntaxEvaluation extends AbstractEvaluation
 {
     /**
      * Check xml data

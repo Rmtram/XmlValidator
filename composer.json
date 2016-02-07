@@ -8,7 +8,11 @@
     "Validate",
     "Validator",
     "XmlValidator",
-    "XmlValidate"
+    "XmlValidate",
+    "xml-validate",
+    "xml-validator",
+    "xml validator",
+    "xml validate"
   ],
   "homepage": "https://github.com/Rmtram/XmlValidator",
   "support": {

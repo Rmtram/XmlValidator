@@ -1,2 +1,3 @@
 required: %s は必須項目です。
 property_exists: %s 項目が有りません。
+match_value: %s 項目の値が一致しません。
