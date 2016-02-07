@@ -8,6 +8,8 @@
 
 namespace Rmtram\XmlValidator\Evaluations;
 
+use Rmtram\XmlValidator\Message\Getter;
+
 class ErrorManager {
 
     /**

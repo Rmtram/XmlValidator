@@ -3,7 +3,7 @@
 namespace Rmtram\XmlValidator;
 
 use Rmtram\XmlValidator\Evaluations\InterfaceEvaluation;
-use Rmtram\XmlValidator\Evaluations\InterfaceMessageEvaluation;
+use Rmtram\XmlValidator\Evaluations\InterfaceMessage;
 use Rmtram\XmlValidator\Message\Getter;
 use Rmtram\XmlValidator\Parsers\InterfaceParser;
 use Rmtram\XmlValidator\Translate\Translator;
@@ -48,6 +48,36 @@ class Validator
     }
 
     /**
+     * @param string $xml
+     * @return bool
+     */
+    public function validate($xml)
+    {
+        $this->reset();
+
+        if (empty($this->evaluations)) {
+            return true;
+        }
+
+        $xml = $this->parser->parse($xml);
+
+        $getter = new Getter($this->translator);
+
+        /** @var InterfaceEvaluation $evaluation */
+        foreach ($this->evaluations as $evaluation) {
+            if ($evaluation instanceof InterfaceMessage) {
+                /** @var InterfaceMessage $evaluation */
+                $evaluation->setMessage($getter);
+            }
+            if (!$evaluation->evaluate($xml)) {
+                $this->errors = $evaluation->errors();
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
      * @param InterfaceEvaluation $evaluation
      * @return $this
      */
@@ -68,41 +98,36 @@ class Validator
     }
 
     /**
-     * @return Translate\Config
+     * @param string $language
+     * @return $this
      */
-    public function getTranslatorConfig()
+    public function setTranslatorLanguage($language)
     {
-        return $this->translator->getConfig();
+        $this->translator->getConfig()
+            ->setLanguage($language);
+        return $this;
     }
 
     /**
-     * @param string $xml
-     * @return bool
+     * @param string $path
+     * @return $this
      */
-    public function validate($xml)
+    public function setTranslatorPath($path)
     {
-        $this->reset();
+        $this->translator->getConfig()
+            ->setPath($path);
+        return $this;
+    }
 
-        if (empty($this->evaluations)) {
-            return true;
-        }
-
-        $xml = $this->parser->parse($xml);
-
-        $getter = new Getter($this->translator);
-
-        /** @var InterfaceEvaluation $evaluation */
-        foreach ($this->evaluations as $evaluation) {
-            if ($evaluation instanceof InterfaceMessageEvaluation) {
-                /** @var InterfaceMessageEvaluation $evaluation */
-                $evaluation->setMessage($getter);
-            }
-            if (!$evaluation->evaluate($xml)) {
-                $this->errors = $evaluation->errors();
-                return false;
-            }
-        }
-        return true;
+    /**
+     * @param string $extension
+     * @return $this
+     */
+    public function setTranslatorFileExtension($extension)
+    {
+        $this->translator->getConfig()
+            ->setExtension($extension);
+        return $this;
     }
 
     /**

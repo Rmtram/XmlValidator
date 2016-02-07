@@ -2,7 +2,7 @@
 
 namespace Rmtram\XmlValidatorTestCase\Validator;
 
-use Rmtram\XmlValidator\Evaluations\BasicEvaluation;
+use Rmtram\XmlValidator\Evaluations\SyntaxEvaluation;
 use Rmtram\XmlValidator\Validator;
 use Rmtram\XmlValidatorTestCase\ValidatorTestCase;
 
@@ -22,7 +22,7 @@ class SyntaxTest extends ValidatorTestCase
     {
         $xml = $this->loadXml('normal');
         $validator = new Validator();
-        $validator->addEvaluation(new BasicEvaluation());
+        $validator->addEvaluation(new SyntaxEvaluation());
         $this->assertTrue($validator->validate($xml));
         $this->assertEmpty($validator->errors());
     }
@@ -36,7 +36,7 @@ class SyntaxTest extends ValidatorTestCase
     {
         $xml = $this->loadXml('syntax-error');
         $validator = new Validator();
-        $validator->addEvaluation(new BasicEvaluation());
+        $validator->addEvaluation(new SyntaxEvaluation());
         $this->assertFalse($validator->validate($xml));
         $this->assertArrayHasKey(0, $validator->errors());
     }

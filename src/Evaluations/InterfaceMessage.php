@@ -8,7 +8,7 @@ use Rmtram\XmlValidator\Message\Getter;
  * Interface InterfaceLocalEvaluation
  * @package Rmtram\XmlValidator\Evaluations
  */
-interface InterfaceMessageEvaluation
+interface InterfaceMessage
 {
     /**
      * SetLocaleGetter
